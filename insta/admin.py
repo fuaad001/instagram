@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import
+from .models import Image, Comment, Profile, Likes
 
-class ArticleAdmin(admin.ModelAdmin):
-
-admin.site.register(Article, ArticleAdmin)
-admin.site.register(tags)
+admin.site.register(Image)
+admin.site.register(Profile)
+admin.site.register(Comment)
+admin.site.register(Likes)
