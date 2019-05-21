@@ -13,6 +13,15 @@ class Profile(models.Model):
     def __str__(self):
         return self.main_user.username
 
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(profile_id):
+        Profile.objects.filter(id = profile_id).delete()
+
+    def update_profile(profile_id, xbio):
+        Profile.objects.filter(id = profile_id).update(bio = xbio)
+
     @classmethod
     def search_users(cls,name):
         users=cls.objects.filter(main_user__username__icontains=name)
@@ -50,6 +59,24 @@ class Image(models.Model):
 
     def __str__(self):
         return self.caption
+
+    def save_image(self):
+        self.save()
+
+    def delete_image(image_id):
+        Image.objects.filter(id = image_id).delete()
+
+    def update_image(image_id, xcaption):
+        Image.objects.filter(id = image_id).update(caption = xcaption)
+
+    def get_image_by_id(image_id):
+        image = Image.objects.get(pk = image_id)
+        return image
+
+    @classmethod
+    def search_image(cls, search_category):
+        images = cls.objects.filter(category__category_name__icontains=search_category)
+        return images
 
 class Contact(models.Model):
     user_from = models.ForeignKey(User, related_name='rel_from_set')
