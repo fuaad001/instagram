@@ -123,7 +123,10 @@ def profile(request):
             form=UpdateProfileForm(request.POST,request.FILES )
             if form.is_valid():
                 profile=form.save(commit=False)
-                Profile.objects.filter(main_user=current_user).update(bio=bio,profile_pic=profile_pic)
+                bio=form.cleaned_data['bio']
+                profile_pic=form.cleaned_data['profile_pic']
+                update = Profile.objects.filter(main_user=current_user).update(bio=bio,profile_pic=profile_pic)
+                profile.save(update)
             return redirect("profile")
         else:
             form=UpdateProfileForm()
