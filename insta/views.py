@@ -33,21 +33,26 @@ def like(request,image_id):
 
     if request.method=='POST':
         current_user=request.user
+        check = Like.objects.filter(main_user = current_user).all()
         form=LikeForm(request.POST)
         if form.is_valid:
-            likes=form.save(commit=False)
-            likes.main_user=current_user
-            likes.picture= image_id
-            likes.save()
+            if len(check) < 1:
+                likes=form.save(commit=False)
+                likes.main_user=current_user
+                likes.picture= image_id
+                likes.save()
 
-            images = Image.objects.all()
+                images = Image.objects.all()
 
-            for photo in images:
-                likes = Like.objects.filter(picture = photo.id).all()
-                No = len(likes)
-                photo.likes = No
+                for photo in images:
+                    likes = Like.objects.filter(picture = photo.id).all()
+                    No = len(likes)
+                    photo.likes = No
 
-            return redirect('home')
+                return redirect('home')
+            else:
+                images = Image.objects.all()
+                return redirect('home')
     else:
         form=LikeForm()
 
@@ -58,6 +63,8 @@ def home(request):
     '''
     view function to feeds page
     '''
+    current_user=request.user
+    followingpeople = Contact.objects.filter(user_from = current_user)
 
     images = Image.objects.all()
 
@@ -95,7 +102,7 @@ def image(request):
 def profile(request):
     title = request.user.username
     try:
-        current_user=request.user.id
+        current_user=request.user
         photos=Image.objects.filter(main_user=current_user).all()
         profile=Profile.get_profile(current_user)
         current_user = request.user
@@ -224,27 +231,33 @@ def follow(request,user_id):
     profile=Profile.get_profile(user)
     photos=Image.objects.filter(main_user=user)
 
-    if current_user.id == user_id:
-        print('You cannot Follow yourself')
+    if current_user == user:
+        return redirect("otherprofile",user_id)
     else:
         if request.method=='POST':
+            check = Contact.objects.filter(user_from = current_user, user_to =user).all()
             form=FollowForm(request.POST)
             if form.is_valid:
-                follow=form.save(commit=False)
-                follow.user_from=current_user
-                follow.user_to=user
-                follow.save()
+                if len(check) < 1:
+                    follow=form.save(commit=False)
+                    follow.user_from=current_user
+                    follow.user_to=user
+                    follow.save()
 
-                return redirect("otherprofile",user_id)
+                    followers = Contact.objects.filter(user_to = user).all()
+                    NoFollowers = len(followers)
+                    user.followers = NoFollowers
+
+                    following = Contact.objects.filter(user_from = user).all()
+                    NoFollowing = len(following)
+                    user.following = NoFollowing
+
+                    return redirect("otherprofile",user_id)
+
+                else:
+                    return redirect("otherprofile",user_id)
+
         else:
             form=FollowForm()
-
-    followers = Contact.objects.filter(user_to = user).all()
-    NoFollowers = len(followers)
-    user.followers = NoFollowers
-
-    following = Contact.objects.filter(user_from = user).all()
-    NoFollowing = len(following)
-    user.following = NoFollowing
 
     return render(request,"otherProfile.html",{"user":user,'profile':profile,"photos":photos,"form":form})
