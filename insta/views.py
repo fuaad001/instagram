@@ -13,7 +13,6 @@ def index(request):
     '''
     if request.method == 'POST':
         current_user = request.user
-        profile=Profile.get_profile(current_user)
         form = UpdateProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
