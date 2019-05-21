@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class="container">
+
+  <div class="row">
+    {% if users%}
+      <h2>Found {{ users|length }} of searched name {{message}}</h2>
+    {% else %}
+      <h2> Found 0 users for the search name {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+  {% if users %}
+    {% for user in users %}
+      <div class="col-sm-6 col-md-3">
+          <a href="{% url 'otherprofile' user.id%}"> <h3>{{user}}</h3> </a>
+      </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+{%endblock%}
