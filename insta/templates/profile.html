@@ -52,7 +52,7 @@
 	<div class="container">
 
 		<div class="gallery">
-
+			{% if photos %}
       {% for photo in photos %}
 
 			<div class="gallery-item" tabindex="0" data-toggle="modal" data-target="#exampleModalScrollable">
@@ -95,9 +95,13 @@
       {% endfor %}
 
 		</div>
-		<!-- End of gallery -->
+		{% else %}
+		<div class="alert">
+      <h2 class="alert alert-info animated fadeIn"> No photos uploaded yet</h2>
+    </div>
+		{% endif %}
 
-		<div class="loader"></div>
+		<!-- End of gallery -->
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top: 150px">
@@ -128,21 +132,20 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Settings</h5>
+            <h5 class="modal-title style="font-size: small;"" id="exampleModalCenterTitle">Settings</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body" style="display:flex; flex-direction:column">
-                <a href="{%url 'image'%}">Add Image</a>
+          <div class="modal-body text-center" style="display:flex; flex-direction:column; padding: 5%;">
+                <a href="{%url 'image'%}" style="font-size: large; margin-bottom: 1%;" class="btn btns btn-info">Add Image</a>
 
-                <a href="/accounts/password/change">Change Password</a>
+                <a href="/accounts/password/change" style="font-size: large; large; margin-bottom: 1%;" class="btn btns btn-info">Change Password</a>
 
-                <a href="/logout">Logout</a>
+                <a href="/logout" style="font-size: large;" class="btn btns btn-info">Logout</a>
 
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btns btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>

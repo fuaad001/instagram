@@ -64,7 +64,7 @@ def home(request):
     view function to feeds page
     '''
     current_user=request.user
-    followingpeople = Contact.objects.filter(user_from = current_user)
+    people = Contact.objects.filter(user_from = current_user)
 
     images = Image.objects.all()
 
@@ -75,7 +75,7 @@ def home(request):
 
     form=LikeForm()
 
-    return render(request, 'home.html',{'images':images, "form":form})
+    return render(request, 'home.html',{'images':images, "form":form, "people":people})
 
 @login_required(login_url='/accounts/login/')
 def image(request):
