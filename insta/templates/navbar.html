@@ -1,41 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="">The Moringa Tribune</a>
+<nav id="nav" class="navbar sticky-top navbar-expand-lg navbar-light">
+  <div class="container">
+    <div class="col-md-4" style='display:flex;'>
+      <img src="../../static/images/main.png" width = '20%' height="10%">
+      <a class="navbar-brand" href="{% url 'home' %}" style='font-size: 275%'> <em>Instapound</em> </a>
     </div>
-    <div class="col-sm-4 col-md-4 navbar-right">
+    <div class="col-md-4" style="margin-left: 5%; margin-right: -3%;">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form  action="{% url 'search' %}" role="search" class="form-inline  my-2 my-lg-0">
+          <input id="searchUp" class="form-control" name="user" type="text" placeholder="Search User" aria-label="Search">
+        </form>
 
-      <form class="navbar-form" role="search" action="">
+      </div>
 
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search Article" name="article">
-          <div class="input-group-btn">
-            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-          </div>
-        </div>
-
-      </form>
-      <div class="col-sm-6 col-md-6">
+    </div>
+    <div class="col-md-4">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <a class="itens" ><i class="far fa-compass"></i></a>
+        <a class="iten" ><i class="far fa-heart"></i></a>
+        <a class="ite" href="{% url 'profile' %}"><i class="far fa-user"></i></a>
         {% if user.is_authenticated %}
         <ul>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
-                      <span class="caret"></span>
-                  </a>
+            <a data-toggle="dropdown" ><i class="fas fa-user-cog" style='margin-top:60%;'></i></a>
             <ul class="dropdown-menu" role="menu">
               <li>
-                <a href="">Home</a>
-              </li>
-              <li>
-                <a href="">Create Article</a>
+                <a href="{%url 'image'%}">Add Image</a>
               </li>
               <li>
                 <a href="/accounts/password/change">Change Password</a>
@@ -48,13 +37,20 @@
         </ul>
         {% else %}
         <li>
-          <a class='btn btn-default' href="/accounts/login">Login</a>
+          <a class='btn btn-default' href="/accounts/login"><i class="fas fa-sign-in-alt" style='margin-left:40%;'></i></a>
         </li>
 
         {% endif %}
+
+
+
       </div>
+
+
     </div>
+
   </div>
+
+
+
 </nav>
-</body>
-</html>

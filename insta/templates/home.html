@@ -1,0 +1,52 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{%block content%}
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+       {%for image in images%}
+       <div id="car" class="card">
+         <div class="card-header">
+           <div class="row">
+             <div class="profile-image">
+              <img src="{{image.profile.profile_pic.url}}" width="20%">
+            </div>
+             <h3 style='margin-top:2%;'>{{image.main_user}}</h3>
+           </div>
+         </div>
+         <div class="card-">
+           <div class="">
+             <img class="img-fluid" src="{{image.image_path.url}}" width="100%">
+           </div>
+
+         </div>
+         <div class="card-footer">
+           <div class="likes">
+             <i>{{image.likes}} likes</i>
+
+           </div>
+           <p>posted {{image.upload_date|timesince}} ago</p>
+           <div class="section row" style='padding:1%'>
+             <form class="form-group" action="{%url 'like' image.id%}" method="post" enctype="multipart/form-data">
+               {%csrf_token%}
+               {%bootstrap_form form%}
+               <button class="btn btn-primary" type="submit" name="button"><i class="fas fa-heart"></i></button>
+             </form>
+             <a href="{% url 'comment' image.id %}"><button class="btn btns btn-info" type="button" name="button"><i class="fas fa-comment"></i></button></a>
+           </div>
+         </div>
+
+
+
+       </div>
+       <br><br>
+
+       {%endfor%}
+
+     </div>
+
+  </div>
+
+</div>
+{%endblock%}
