@@ -33,7 +33,7 @@ def like(request,image_id):
 
     if request.method=='POST':
         current_user=request.user
-        check = Like.objects.filter(main_user = current_user).all()
+        check = Like.objects.filter(main_user = current_user, picture = image_id).all()
         form=LikeForm(request.POST)
         if form.is_valid:
             if len(check) < 1:
