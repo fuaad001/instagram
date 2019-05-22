@@ -1523,8 +1523,7 @@ a{
     width:20%;
   }
   .sugg button{
-    margin-left: -60%;
-    margin-top: -50%
+    text-align: center;
   }
 }
 
