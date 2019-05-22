@@ -1504,9 +1504,7 @@ a{
   .card, .cardz{
     margin-top: 1%;
   }
-  .cardz{
-    height: 50px;
-  }
+
   .main-image img{
     height: 400px;
 
@@ -1516,7 +1514,7 @@ a{
     width:20%;
   }
   .card-header h3{
-    margin-left: -45%;
+    margin-left: -25%;
   }
   .imgz{
     margin-left: -70%;
@@ -1531,18 +1529,16 @@ a{
   .card, .cardz{
     margin-top: 1%;
   }
-  .cardz{
-    height: 50px;
-  }
+
   .main-image img{
     height: 300px;
   }
   .imgs{
-    margin-left: -70%;
-    width:18%;
+    margin-left: 20%;
+    width:10%;
   }
   .card-header h3{
-    margin-left: -70%;
+    margin-left: 10%;
   }
   .profile-user-name{
     margin-top: 37%;
@@ -1557,7 +1553,7 @@ a{
   }
   .imgz{
     margin-left: 20%;
-    width:18%;
+    width:10%;
   }
   .sugg button{
     margin-left: -60%;
