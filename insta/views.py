@@ -51,6 +51,7 @@ def like(request,image_id):
 
                 return redirect('home')
             else:
+                Like.objects.filter(main_user = current_user).delete()
                 images = Image.objects.all()
                 return redirect('home')
     else:
