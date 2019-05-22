@@ -1522,6 +1522,10 @@ a{
     margin-left: -70%;
     width:20%;
   }
+  .sugg button{
+    margin-left: -60%;
+    margin-top: -50%
+  }
 }
 
 @media only screen and (max-width: 812px) {
@@ -1555,5 +1559,8 @@ a{
   .imgz{
     margin-left: 20%;
     width:18%;
+  }
+  .sugg button{
+    margin-left: -60%;
   }
 }

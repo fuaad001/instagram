@@ -65,8 +65,8 @@ def home(request):
     '''
     current_user=request.user
     people = Contact.objects.filter(user_from = current_user)
-
     images = Image.objects.all()
+    users = Profile.objects.all()
 
     for photo in images:
         likes = Like.objects.filter(picture = photo.id).all()
@@ -75,14 +75,13 @@ def home(request):
 
     form=LikeForm()
 
-    return render(request, 'home.html',{'images':images, "form":form, "people":people})
+    return render(request, 'home.html',{'images':images, "form":form, "people":people,'current_user':current_user, "users":users})
 
 @login_required(login_url='/accounts/login/')
 def image(request):
     '''
     view function to upload image page
     '''
-
     current_user = request.user
     if request.method == 'POST':
         form = UploadImageForm(request.POST, request.FILES)
