@@ -2,7 +2,7 @@
 #### This is a clone of the already existing instagram app that allows one to follow other users, like and comment on their pictures and upload his or her own pictures, 05/2019
 
 #### By **Hussein Fuaad Mahmoud**
-##APP
+## APP
 * User Login
 ![Screenshot from 2019-05-23 10-26-31](https://user-images.githubusercontent.com/47349274/58233713-745d5580-7d45-11e9-8dba-14e910dbc09e.png)
 
